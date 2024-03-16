@@ -46,8 +46,17 @@ UART_HandleTypeDef huart5;
 
 /* USER CODE BEGIN PV */
 // SYSTEM
-const char*	hello = "\nHello nemo2.space tracker p v3\r\n" ;
-const char*	fv = "0.0.3-alpha" ;
+const char*		hello = "\nHello nemo2.space tracker p v3\r\n" ;
+const char*		fv = "0.0.3-alpha" ;
+char			dbg_payload[UART_TX_MAX_BUFF_SIZE] = { 0 } ;
+
+// ASTRO
+char			astro_payload[ASTRONODE_APP_PAYLOAD_MAX_LEN_BYTES] = { 0 } ;
+my_astro_cmd	astro_cmd ;
+
+// GNSS
+fix_astro		fix3d ;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -57,7 +66,9 @@ static void MX_USART3_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART5_UART_Init(void);
 /* USER CODE BEGIN PFP */
-
+void sys_restart ( void ) ;
+bool is_astro_evt ( void ) ;
+void ant_sw_pos ( uint8_t pos ) ;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -98,6 +109,22 @@ int main(void)
   MX_USART5_UART_Init();
   /* USER CODE BEGIN 2 */
   send_debug_logs ( hello ) ;
+  sprintf ( dbg_payload , "Firmware version: %s" , fv ) ;
+  send_debug_logs ( dbg_payload ) ;
+  /*sprintf ( dbg_payload , "Firmware mode: %u" , (uint16_t) sys_mode ) ;
+  send_debug_logs ( dbg_payload ) ;
+  sprintf ( dbg_payload , "Mission mode: %u" , (uint16_t) sys_mode ) ;
+  send_debug_logs ( dbg_payload ) ;*/
+
+  ant_sw_pos ( 2 ) ;
+
+  if ( !my_astro_init () )
+	  sys_restart () ;
+  else
+	  while ( is_astro_evt () )
+		  my_astro_handle_evt () ;
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -333,7 +360,29 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-//ASTRO
+// SYSTEM Operations
+void sys_restart ( void )
+{
+	//my_rtc_get_dt_s ( rtc_dt_s ) ;
+	//sprintf ( dbg_payload , "%s,%d,%s,HAL_NVIC_SystemReset" , __FILE__ , __LINE__ , rtc_dt_s ) ;
+	//send_debug_logs ( dbg_payload ) ;
+	HAL_NVIC_SystemReset () ;
+}
+
+// ASTRO Operations
+void astro_reset ( void )
+{
+    HAL_GPIO_WritePin ( ASTRO_RST_GPIO_Port , ASTRO_RST_Pin , GPIO_PIN_SET ) ;
+    HAL_Delay ( 1 ) ;
+    HAL_GPIO_WritePin ( ASTRO_RST_GPIO_Port , ASTRO_RST_Pin , GPIO_PIN_RESET ) ;
+    HAL_Delay ( 250 ) ;
+}
+
+bool is_astro_evt ( void )
+{
+	return ( HAL_GPIO_ReadPin ( ASTRO_EVT_GPIO_Port , ASTRO_EVT_Pin ) == GPIO_PIN_SET ? true : false);
+}
+
 void send_debug_logs ( const char* p_tx_buffer )
 {
     uint32_t length = strlen ( p_tx_buffer ) ;
@@ -344,6 +393,43 @@ void send_debug_logs ( const char* p_tx_buffer )
     }
     HAL_UART_Transmit ( &HUART_DBG , ( uint8_t* ) p_tx_buffer , length , 1000 ) ;
     HAL_UART_Transmit ( &HUART_DBG , ( uint8_t* ) "\n" , 1 , 1000 ) ;
+}
+
+void send_astronode_request ( uint8_t* p_tx_buffer , uint32_t length )
+{
+    send_debug_logs ( "Message sent to the Astronode --> " ) ;
+    send_debug_logs ( ( char* ) p_tx_buffer ) ;
+    HAL_UART_Transmit ( &HUART_ASTRO , p_tx_buffer , length , 1000 ) ;
+}
+
+uint32_t get_systick ( void )
+{
+    return HAL_GetTick() ;
+}
+
+bool is_systick_timeout_over ( uint32_t starting_value , uint16_t duration )
+{
+    return ( get_systick () - starting_value > duration ) ? true : false ;
+}
+
+bool is_astronode_character_received ( uint8_t* p_rx_char )
+{
+    return ( HAL_UART_Receive ( &HUART_ASTRO , p_rx_char , 1 , 100 ) == HAL_OK ? true : false ) ;
+}
+
+// ** ANT SW Operations
+void ant_sw_pos ( uint8_t pos )
+{
+	if ( pos == 1 ) // Włączenie GNSS czyli ustawienie RF_SW_CTL1 = LOW i RF_SW_CTL2 = HIGH
+	{
+		HAL_GPIO_WritePin ( RF_SW_CTL1_GPIO_Port , RF_SW_CTL1_Pin , GPIO_PIN_RESET ) ;
+		HAL_GPIO_WritePin ( RF_SW_CTL2_GPIO_Port , RF_SW_CTL2_Pin , GPIO_PIN_SET ) ;
+	}
+	else if ( pos == 2 )
+	{
+		HAL_GPIO_WritePin ( RF_SW_CTL1_GPIO_Port , RF_SW_CTL1_Pin , GPIO_PIN_SET ) ;
+		HAL_GPIO_WritePin ( RF_SW_CTL2_GPIO_Port , RF_SW_CTL2_Pin , GPIO_PIN_RESET ) ;
+	}
 }
 /* USER CODE END 4 */
 

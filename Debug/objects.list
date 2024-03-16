@@ -25,4 +25,5 @@
 "./Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_ll_rcc.o"
 "./my_drivers/Src/astronode_application.o"
 "./my_drivers/Src/astronode_transport.o"
+"./my_drivers/Src/my_astronode.o"
 "./my_libraries/Src/my_global.o"

@@ -6,15 +6,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../my_drivers/Src/astronode_application.c \
-../my_drivers/Src/astronode_transport.c 
+../my_drivers/Src/astronode_transport.c \
+../my_drivers/Src/my_astronode.c 
 
 OBJS += \
 ./my_drivers/Src/astronode_application.o \
-./my_drivers/Src/astronode_transport.o 
+./my_drivers/Src/astronode_transport.o \
+./my_drivers/Src/my_astronode.o 
 
 C_DEPS += \
 ./my_drivers/Src/astronode_application.d \
-./my_drivers/Src/astronode_transport.d 
+./my_drivers/Src/astronode_transport.d \
+./my_drivers/Src/my_astronode.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,7 +27,7 @@ my_drivers/Src/%.o my_drivers/Src/%.su my_drivers/Src/%.cyclo: ../my_drivers/Src
 clean: clean-my_drivers-2f-Src
 
 clean-my_drivers-2f-Src:
-	-$(RM) ./my_drivers/Src/astronode_application.cyclo ./my_drivers/Src/astronode_application.d ./my_drivers/Src/astronode_application.o ./my_drivers/Src/astronode_application.su ./my_drivers/Src/astronode_transport.cyclo ./my_drivers/Src/astronode_transport.d ./my_drivers/Src/astronode_transport.o ./my_drivers/Src/astronode_transport.su
+	-$(RM) ./my_drivers/Src/astronode_application.cyclo ./my_drivers/Src/astronode_application.d ./my_drivers/Src/astronode_application.o ./my_drivers/Src/astronode_application.su ./my_drivers/Src/astronode_transport.cyclo ./my_drivers/Src/astronode_transport.d ./my_drivers/Src/astronode_transport.o ./my_drivers/Src/astronode_transport.su ./my_drivers/Src/my_astronode.cyclo ./my_drivers/Src/my_astronode.d ./my_drivers/Src/my_astronode.o ./my_drivers/Src/my_astronode.su
 
 .PHONY: clean-my_drivers-2f-Src
 

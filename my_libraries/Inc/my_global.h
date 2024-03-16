@@ -28,16 +28,22 @@
 
 #define UART_TX_MAX_BUFF_SIZE		250
 
+// ASTRO
+
+
+// GNSS
+typedef struct
+{
+	int32_t		latitude_astro_geo_wr ;
+	int32_t		longitude_astro_geo_wr ;
+	double 		pdop ;
+	char		fix_mode ;
+	uint16_t	acq_time ;
+	uint32_t	acq_total_time ;
+} fix_astro ;
 
 // SYS
-extern char		dbg_payload[UART_TX_MAX_BUFF_SIZE] ;
 
-void			send_debug_logs ( const char* ) ;
-void			my_astronode_reset ( void ) ;
-void			send_astronode_request ( uint8_t* , uint32_t ) ;
-uint32_t		get_systick ( void ) ;
-bool			is_systick_timeout_over ( uint32_t , uint16_t ) ;
-bool			is_astronode_character_received ( uint8_t* ) ;
 
 
 #endif /* MY_GLOBAL_H_ */

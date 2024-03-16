@@ -10,6 +10,8 @@
 // Astrocast
 #include "astronode_application.h"
 
+// my
+#include "my_global.h"
 
 //------------------------------------------------------------------------------
 // Type definitions
@@ -28,10 +30,5 @@ typedef enum return_status_t
  * @brief Send the message to the Asset Interface and return the response.
  */
 return_status_t astronode_transport_send_receive(astronode_app_msg_t *p_request, astronode_app_msg_t *p_answer);
-
-void send_astronode_request ( uint8_t* , uint32_t ) ;
-uint32_t get_systick ( void ) ;
-bool is_systick_timeout_over ( uint32_t , uint16_t ) ;
-bool is_astronode_character_received ( uint8_t* ) ;
 
 #endif /* ASTRONODE_TRANSPORT_H */
