@@ -79,13 +79,19 @@ void Error_Handler(void);
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
 #define SWCLK_GPIO_Port GPIOA
+#define GNSS_TX_Pin GPIO_PIN_3
+#define GNSS_TX_GPIO_Port GPIOB
+#define GNSS_RX_Pin GPIO_PIN_4
+#define GNSS_RX_GPIO_Port GPIOB
 #define ASTRO_TX_Pin GPIO_PIN_8
 #define ASTRO_TX_GPIO_Port GPIOB
 #define ASTRO_RX_Pin GPIO_PIN_9
 #define ASTRO_RX_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-#define HUART_DBG huart2
+#define HUART_DBG	huart2
+#define HUART_ASTRO	huart3
+#define HUART_GNSS	huart5
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
