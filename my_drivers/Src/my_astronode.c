@@ -39,9 +39,7 @@ bool my_astro_init ()
 		return true ;
 	}
 	else
-	{
 		return false ;
-	}
 }
 
 bool my_astro_add_payload_2_queue ( uint16_t id , const char* payload )

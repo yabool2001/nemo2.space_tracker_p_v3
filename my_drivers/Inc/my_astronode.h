@@ -23,6 +23,7 @@ typedef struct
 	bool		is_executed ;
 } my_astro_cmd ;
 
+
 extern void		send_debug_logs ( const char* ) ;
 extern void		send_astronode_request ( uint8_t* , uint32_t ) ;
 extern uint32_t	get_systick ( void ) ;

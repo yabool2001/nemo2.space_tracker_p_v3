@@ -8,12 +8,7 @@
 #ifndef MY_GLOBAL_H_
 #define MY_GLOBAL_H_
 
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-#include "stm32g0xx_hal.h"
+#include "my_global.h"
 
 #define TIME_THS_15_SEC				15
 #define TIME_THS_30_SEC				30
@@ -27,23 +22,6 @@
 #define TIME_THS_100_D				8640000
 
 #define UART_TX_MAX_BUFF_SIZE		250
-
-// ASTRO
-
-
-// GNSS
-typedef struct
-{
-	int32_t		latitude_astro_geo_wr ;
-	int32_t		longitude_astro_geo_wr ;
-	double 		pdop ;
-	char		fix_mode ;
-	uint16_t	acq_time ;
-	uint32_t	acq_total_time ;
-} fix_astro ;
-
-// SYS
-
 
 
 #endif /* MY_GLOBAL_H_ */

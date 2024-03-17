@@ -5,7 +5,8 @@ my_drivers/Src/astronode_transport.o: \
  C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/astronode_application.h \
  C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/astronode_definitions.h \
  C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_libraries/Inc/my_global.h \
- ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h \
+ C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_libraries/Inc/my_global.h \
+ ../Core/Inc/main.h ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h \
  ../Core/Inc/stm32g0xx_hal_conf.h \
  ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_rcc.h \
  ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_def.h \
@@ -32,9 +33,10 @@ my_drivers/Src/astronode_transport.o: \
  ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_flash_ex.h \
  ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pwr.h \
  ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pwr_ex.h \
+ ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_rtc.h \
+ ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_rtc_ex.h \
  ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h \
  ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart_ex.h \
- ../Core/Inc/main.h \
  C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/my_astronode.h \
  C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/astronode_transport.h
 C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/astronode_definitions.h:
@@ -42,6 +44,8 @@ C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/astronode_transp
 C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/astronode_application.h:
 C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/astronode_definitions.h:
 C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_libraries/Inc/my_global.h:
+C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_libraries/Inc/my_global.h:
+../Core/Inc/main.h:
 ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:
 ../Core/Inc/stm32g0xx_hal_conf.h:
 ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_rcc.h:
@@ -69,8 +73,9 @@ C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_libraries/Inc/my_global.h:
 ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_flash_ex.h:
 ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pwr.h:
 ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pwr_ex.h:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_rtc.h:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_rtc_ex.h:
 ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:
 ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart_ex.h:
-../Core/Inc/main.h:
 C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/my_astronode.h:
 C:/Users/mzeml/embedded/nemo2.space_tracker_p_v3/my_drivers/Inc/astronode_transport.h:
